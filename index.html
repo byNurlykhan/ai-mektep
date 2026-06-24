@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Үйренейік қане, достар — Құлтемір оқу мектебі</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#EDE8F5;--white:#FFFFFF;--purple:#7C3AED;--purple-l:#A78BFA;
+  --yellow:#F5C842;--ink:#1E1B2E;--muted:#6B6880;
+  --radius:18px;--shadow:0 4px 24px rgba(124,58,237,.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden}
+
+/* ─── HEADER ─── */
+header{background:var(--white);position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(124,58,237,.08)}
+.hdr{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 28px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Nunito',sans-serif;font-weight:900;font-size:1.35rem;color:var(--ink);text-decoration:none;cursor:pointer}
+.logo-badge{background:var(--yellow);color:var(--ink);border-radius:10px;padding:3px 10px;font-size:.78rem;font-weight:800;letter-spacing:-.2px}
+.hdr-nav{display:flex;gap:22px;align-items:center}
+.hdr-nav a{text-decoration:none;color:var(--muted);font-size:.88rem;font-weight:600;cursor:pointer;transition:color .2s}
+.hdr-nav a:hover{color:var(--purple)}
+.btn-enroll{background:var(--purple);color:#fff;border:none;border-radius:12px;padding:9px 20px;font-size:.86rem;font-weight:700;cursor:pointer;transition:background .2s}
+.btn-enroll:hover{background:#6D28D9}
+
+/* ─── PAGE SYSTEM ─── */
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+/* ─── HERO ─── */
+.hero{max-width:1200px;margin:60px auto 0;padding:0 28px;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.hero h1{font-family:'Nunito',sans-serif;font-size:clamp(1.9rem,3.5vw,3rem);font-weight:900;line-height:1.18}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--purple),var(--purple-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero>div>p{margin-top:16px;font-size:1rem;color:var(--muted);line-height:1.75;max-width:480px}
+.hero-btns{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.btn-primary{background:var(--yellow);color:var(--ink);font-family:'Nunito',sans-serif;font-weight:800;font-size:.97rem;border:none;border-radius:14px;padding:13px 28px;cursor:pointer;transition:transform .15s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,200,66,.45)}
+.btn-outline{background:transparent;color:var(--purple);border:2px solid var(--purple);font-family:'Nunito',sans-serif;font-weight:700;font-size:.93rem;border-radius:14px;padding:11px 24px;cursor:pointer;transition:background .2s}
+.btn-outline:hover{background:var(--purple);color:#fff}
+
+/* Hero card */
+.hero-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:34px;position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:var(--yellow);opacity:.12;border-radius:50%}
+.tag{display:inline-block;background:var(--yellow);color:var(--ink);border-radius:8px;padding:3px 11px;font-size:.75rem;font-weight:800;margin-bottom:14px}
+.hero-card h2{font-family:'Nunito',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:10px}
+.hero-card>p{color:var(--muted);font-size:.9rem;line-height:1.65}
+.ai-live{display:flex;align-items:center;gap:8px;background:var(--bg);border-radius:12px;padding:11px 15px;margin-top:18px;font-size:.85rem;font-weight:600}
+.dot{width:9px;height:9px;border-radius:50%;background:#22C55E;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ─── SECTIONS ─── */
+.sec{max-width:1200px;margin:80px auto 0;padding:0 28px}
+.sec-label{font-size:.73rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--purple);margin-bottom:8px}
+.sec-title{font-family:'Nunito',sans-serif;font-size:clamp(1.5rem,2.8vw,2.25rem);font-weight:900;margin-bottom:12px}
+.sec-sub{color:var(--muted);font-size:.96rem;max-width:560px;line-height:1.75}
+
+/* ─── COURSE CARDS ─── */
+.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:36px}
+.course-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.course-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(124,58,237,.15)}
+.course-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--purple),var(--purple-l))}
+.day-badge{background:var(--purple);color:#fff;border-radius:10px;padding:4px 12px;font-size:.74rem;font-weight:800;display:inline-block;margin-bottom:14px}
+.course-card h3{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.03rem;margin-bottom:8px}
+.course-card>p{color:var(--muted);font-size:.85rem;line-height:1.65}
+.course-meta{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.meta-chip{background:var(--bg);border-radius:8px;padding:4px 10px;font-size:.74rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:5px}
+.open-btn{margin-top:18px;background:var(--bg);border:none;border-radius:10px;padding:9px 18px;font-size:.83rem;font-weight:700;color:var(--purple);cursor:pointer;transition:background .2s;width:100%;text-align:center}
+.open-btn:hover{background:var(--purple);color:#fff}
+
+/* ─── MODAL ─── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(30,27,46,.55);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.overlay.show{display:flex}
+.modal{background:var(--white);border-radius:24px;padding:40px;max-width:460px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative;max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:16px;right:20px;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted);line-height:1}
+.modal h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.45rem;margin-bottom:6px}
+.modal>p{color:var(--muted);font-size:.9rem;margin-bottom:24px;line-height:1.6}
+.mform label{display:block;font-size:.82rem;font-weight:600;margin-bottom:5px;color:var(--ink)}
+.mform input,.mform textarea{width:100%;border:1.5px solid rgba(124,58,237,.2);border-radius:12px;padding:11px 15px;font-size:.91rem;font-family:'Inter',sans-serif;outline:none;margin-bottom:14px;transition:border-color .2s;resize:vertical}
+.mform input:focus,.mform textarea:focus{border-color:var(--purple)}
+.mform .btn-join{width:100%;background:var(--purple);color:#fff;border:none;border-radius:14px;padding:13px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.97rem;cursor:pointer;margin-top:2px;transition:background .2s}
+.mform .btn-join:hover{background:#6D28D9}
+
+/* ─── LESSON PAGE ─── */
+.lesson-page{max-width:900px;margin:0 auto;padding:40px 28px 80px}
+.lesson-back{display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--purple);font-weight:700;font-size:.92rem;cursor:pointer;margin-bottom:28px;padding:0}
+.lesson-back:hover{text-decoration:underline}
+.prog-wrap{background:rgba(124,58,237,.1);border-radius:8px;height:6px;margin-bottom:28px}
+.prog-bar{height:6px;border-radius:8px;background:linear-gradient(90deg,var(--purple),var(--purple-l));transition:width .5s}
+.lesson-header{background:var(--white);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);margin-bottom:24px}
+.lesson-day{font-size:.73rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--purple);margin-bottom:8px}
+.lesson-header h1{font-family:'Nunito',sans-serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;margin-bottom:12px}
+.lesson-header>p{color:var(--muted);font-size:.96rem;line-height:1.75}
+.lesson-chips{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.l-chip{background:var(--bg);border-radius:8px;padding:5px 12px;font-size:.77rem;font-weight:600;display:flex;align-items:center;gap:5px}
+.lesson-body{display:flex;flex-direction:column;gap:22px}
+.lblock{background:var(--white);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow)}
+.lblock h2{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.15rem;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.lblock h2 svg{flex-shrink:0}
+.lblock p{color:var(--muted);font-size:.94rem;line-height:1.8;margin-bottom:12px}
+.lblock p:last-child{margin-bottom:0}
+.lblock ul,.lblock ol{padding-left:20px;color:var(--muted);font-size:.94rem;line-height:1.85}
+.lblock li{margin-bottom:7px}
+.lblock strong{color:var(--ink)}
+
+/* Callouts */
+.callout{border-radius:14px;padding:18px 22px;margin:14px 0;font-size:.91rem;line-height:1.75}
+.callout.yellow{background:#FFF9E5;border-left:4px solid var(--yellow)}
+.callout.purple{background:#F3EFFE;border-left:4px solid var(--purple)}
+.callout.green{background:#F0FDF4;border-left:4px solid #22C55E}
+.callout.red{background:#FEF2F2;border-left:4px solid #EF4444}
+
+/* Prompt box */
+.prompt-box{background:var(--bg);border-radius:14px;padding:18px 52px 18px 20px;border-left:4px solid var(--purple);font-size:.88rem;font-style:italic;line-height:1.75;position:relative;margin:12px 0;white-space:pre-wrap}
+.copy-btn{position:absolute;top:10px;right:12px;background:var(--purple);color:#fff;border:none;border-radius:8px;padding:4px 12px;font-size:.73rem;font-weight:700;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:4px}
+.copy-btn:hover{background:#6D28D9}
+.copy-btn.ok{background:#22C55E}
+
+/* Quiz */
+.quiz-block{background:var(--bg);border-radius:14px;padding:24px}
+.quiz-block h3{font-family:'Nunito',sans-serif;font-weight:800;font-size:.97rem;margin-bottom:16px}
+.quiz-option{display:block;background:var(--white);border:2px solid rgba(124,58,237,.14);border-radius:12px;padding:12px 16px;margin-bottom:10px;cursor:pointer;font-size:.9rem;transition:border-color .2s,background .2s;text-align:left;width:100%;font-family:'Inter',sans-serif}
+.quiz-option:hover{border-color:var(--purple);background:#FAF8FF}
+.quiz-option.correct{border-color:#22C55E;background:#F0FDF4;color:#15803D;font-weight:600}
+.quiz-option.wrong{border-color:#EF4444;background:#FEF2F2;color:#DC2626}
+.quiz-explain{display:none;background:var(--white);border-radius:12px;padding:14px 16px;margin-top:8px;font-size:.87rem;color:var(--muted);line-height:1.7}
+.quiz-explain.show{display:block}
+
+/* Task */
+.task-block{background:linear-gradient(135deg,var(--purple),#5B21B6);border-radius:var(--radius);padding:28px;color:#fff}
+.task-block h3{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.05rem;margin-bottom:10px}
+.task-block>p{opacity:1;color:#fff;font-size:.91rem;line-height:1.75;margin-bottom:16px}
+.task-sample{background:rgba(255,255,255,.14);border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:.87rem;font-style:italic;line-height:1.7}
+.task-textarea{width:100%;border-radius:12px;border:none;padding:14px 16px;font-size:.9rem;font-family:'Inter',sans-serif;min-height:110px;resize:vertical;outline:none;background:rgba(255,255,255,.95)}
+.task-send{margin-top:10px;background:var(--yellow);color:var(--ink);border:none;border-radius:12px;padding:11px 24px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;transition:transform .15s}
+.task-send:hover{transform:translateY(-1px)}
+.task-result{display:none;margin-top:12px;background:rgba(255,255,255,.15);border-radius:12px;padding:14px;font-size:.87rem;line-height:1.7}
+
+/* Lesson nav */
+.lesson-nav{display:flex;justify-content:space-between;margin-top:28px;gap:16px;flex-wrap:wrap}
+.lnav-btn{background:var(--white);border:2px solid rgba(124,58,237,.18);border-radius:14px;padding:12px 22px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;color:var(--purple);cursor:pointer;transition:background .2s,border-color .2s}
+.lnav-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
+.lnav-btn.next{background:var(--purple);color:#fff;border-color:var(--purple)}
+.lnav-btn.next:hover{background:#6D28D9}
+
+/* ─── ABOUT PAGE ─── */
+.about-wrap{max-width:900px;margin:0 auto;padding:60px 28px 80px}
+.author-card{background:var(--white);border-radius:24px;box-shadow:var(--shadow);padding:44px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:start;margin-bottom:28px}
+.author-avatar{width:110px;height:110px;border-radius:22px;background:linear-gradient(135deg,var(--purple),var(--purple-l));display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Nunito',sans-serif;font-size:2.8rem;font-weight:900;color:#fff}
+.author-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.5rem;margin-bottom:4px}
+.author-role{color:var(--purple);font-size:.9rem;font-weight:700;margin-bottom:14px}
+.author-bio{color:var(--muted);font-size:.94rem;line-height:1.8}
+.author-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.author-tag{background:var(--bg);border-radius:10px;padding:5px 12px;font-size:.78rem;font-weight:700;color:var(--ink);border:1.5px solid rgba(124,58,237,.15)}
+.mission-card{background:linear-gradient(135deg,var(--purple),#5B21B6);border-radius:24px;padding:44px;color:#fff;margin-bottom:28px}
+.mission-card h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.6rem;margin-bottom:16px}
+.mission-card p{opacity:.88;font-size:.96rem;line-height:1.85;margin-bottom:14px}
+.mission-card p:last-child{margin-bottom:0}
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-bottom:28px}
+.value-card{background:var(--white);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.value-card h3{font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.value-card p{color:var(--muted);font-size:.87rem;line-height:1.65}
+
+/* ─── FEEDBACK SECTION ─── */
+.feedback-block{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:36px;margin-top:28px}
+.feedback-block h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.25rem;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.feedback-block>p{color:var(--muted);font-size:.93rem;line-height:1.7;margin-bottom:24px}
+.fform label{display:block;font-size:.82rem;font-weight:600;margin-bottom:5px;color:var(--ink)}
+.fform input,.fform textarea{width:100%;border:1.5px solid rgba(124,58,237,.18);border-radius:12px;padding:11px 15px;font-size:.91rem;font-family:'Inter',sans-serif;outline:none;margin-bottom:14px;transition:border-color .2s;resize:vertical}
+.fform input:focus,.fform textarea:focus{border-color:var(--purple)}
+.fform .btn-fb{background:var(--purple);color:#fff;border:none;border-radius:12px;padding:12px 28px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.92rem;cursor:pointer;transition:background .2s}
+.fform .btn-fb:hover{background:#6D28D9}
+.fb-success{display:none;background:#F0FDF4;border-radius:12px;padding:16px 20px;color:#15803D;font-weight:600;font-size:.92rem;margin-top:14px}
+
+/* ─── FINAL PAGE ─── */
+.final-wrap{text-align:center;padding:80px 28px}
+.cert-card{background:linear-gradient(135deg,var(--purple),#5B21B6);border-radius:24px;padding:44px;max-width:500px;margin:24px auto;color:#fff}
+.cert-card h2{font-family:'Nunito',sans-serif;font-size:1.55rem;font-weight:900;margin-bottom:6px}
+.cert-card p{opacity:.8;font-size:.9rem}
+.cert-name{font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:900;margin:16px 0 4px;color:var(--yellow)}
+.enroll-cta{background:var(--white);border-radius:var(--radius);padding:36px;max-width:500px;margin:0 auto;box-shadow:var(--shadow)}
+.enroll-cta h3{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.15rem;margin-bottom:10px}
+.enroll-cta p{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:20px}
+
+/* ─── SVG ICONS helper ─── */
+.icon{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* ─── FOOTER ─── */
+footer{background:var(--ink);color:rgba(255,255,255,.6);text-align:center;padding:32px 28px;margin-top:80px;font-size:.84rem}
+footer strong{color:#fff}
+footer a{color:var(--purple-l);text-decoration:none}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;gap:28px}
+  .author-card{grid-template-columns:1fr;gap:22px}
+  .author-avatar{width:80px;height:80px;font-size:2rem}
+  .hdr-nav a:not(:last-child){display:none}
+  .sec,.lesson-page,.about-wrap{padding-left:16px;padding-right:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="hdr">
+    <div class="logo" onclick="goHome()">
+      <span class="logo-badge">ЖИ</span>
+      Үйренейік қане, достар…
+    </div>
+    <nav class="hdr-nav">
+      <a onclick="goHome()">Сабақтар</a>
+      <a onclick="showPage('about')">Платформа туралы</a>
+      <button class="btn-enroll" onclick="openModal()">Курсқа жазылу</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══ ТІРКЕЛУ МОДАЛЫ ═══ -->
+<div class="overlay" id="regOverlay" onclick="overlayClose(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2>Курсқа жазылу</h2>
+    <p>Білімге жол — ашық. Мына деректерді қалдырсаңыз жеткілікті.</p>
+    <form class="mform" onsubmit="handleReg(event)">
+      <label>Аты-жөніңіз</label>
+      <input type="text" id="reg-name" placeholder="Айгүл Сейтқали" required/>
+      <label>Телефон нөмірі</label>
+      <input type="tel" id="reg-phone" placeholder="+7 700 000 00 00" required/>
+      <label>Мекеме не кітапхана атауы</label>
+      <input type="text" id="reg-org" placeholder="Ұлттық кітапхана, Алматы"/>
+      <label>Электрондық пошта</label>
+      <input type="email" id="reg-email" placeholder="example@mail.kz" required/>
+      <button type="submit" class="btn-join">Жазылу</button>
+    </form>
+    <div id="regSuccess" style="display:none;text-align:center;padding:20px">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin:0 auto 12px;display:block"><circle cx="24" cy="24" r="24" fill="#22C55E" opacity=".15"/><path d="M14 24l7 7 13-13" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p style="font-weight:700;font-size:1rem">Сізді тізімімізге қостық!</p>
+      <p style="color:var(--muted);font-size:.88rem;margin-top:4px">Жақын арада хабарласамыз.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     БАСТЫ БЕТ
+═══════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <div class="hero">
+    <div>
+      <p class="sec-label">Кітапханашыларға арналған жасанды интеллект мектебі</p>
+      <h1><em>Құлтемірді құлша жұмсап</em> үйренейік!</h1>
+      <p>Жасанды интеллект — ракета ғылымы емес, дұрыс сөйлесуді білу ғана. Бес күнде промт инжинирингтің негізін меңгересің — нақты кітапхана мысалдарымен, таза қазақ тілінде.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('courses-anchor').scrollIntoView({behavior:'smooth'})">Сабақтарды ашу</button>
+        <button class="btn-outline" onclick="showPage('about')">Платформа туралы</button>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card">
+        <span class="tag">Тегін · Қазақша · Онлайн</span>
+        <h2>Бұл мектепте не бар?</h2>
+        <p>Бес толыққанды сабақ, нақты промт үлгілері, практикалық тапсырмалар және жасанды интеллектпен тікелей жаттығу мүмкіндігі. Барлығы кітапханашы тілімен жазылған.</p>
+        <div class="ai-live">
+          <span class="dot"></span>
+          ChatGPT · Gemini · Claude — тікелей жұмыс
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Сабақтар -->
+  <div class="sec" id="courses-anchor">
+    <p class="sec-label">Оқу жоспары</p>
+    <h2 class="sec-title">Бес күн — бес сабақ</h2>
+    <p class="sec-sub">Кез келген сабақты ашып оқи беруге болады. Реттілік ұсынылады, бірақ міндетті емес.</p>
+
+    <div class="course-grid">
+
+      <div class="course-card" onclick="openLesson(1)">
+        <span class="day-badge">1-күн</span>
+        <h3>Жасанды интеллект дегенімізді тани жүрейік</h3>
+        <p>Мифтерді сейілтеміз. ChatGPT пен Gemini-дің не екенін түсінеміз. Тіршілігімізде не өзгереді?</p>
+        <div class="course-meta">
+          <span class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 20 минут</span>
+          <span class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Кіріспе</span>
+        </div>
+        <button class="open-btn">Сабақты ашу →</button>
+      </div>
+
+      <div class="course-card" onclick="openLesson(2)">
+        <span class="day-badge">2-күн</span>
+        <h3>Промт анатомиясы: төрт элемент</h3>
+        <p>Жақсы промттың құрылымын үйренеміз. Рөл, контекст, сұраныс, формат — осы төрт кілт шеберлікке жеткізеді.</p>
+        <div class="course-meta">
+          <span class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 25 минут</span>
+          <span class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg> Негіз</span>
+        </div>
+        <button class="open-btn">Сабақты ашу →</button>
+      </div>
+
+      <div class="course-card" onclick="openLesson(3)">
+        <span class="day-badge">3-күн</span>
+        <h3>Кітапхана тапсырмаларын жасанды интеллектпен орындау</h3>
+        <p>Аннотация, кітап ұсынысы, әлеуметтік желі жазбасы — бәрі бес минутта дайын болатын болады.</p>
+        <div class="course-meta">
+          <span class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 30 минут</span>
+          <span class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M13 2v7h7"/></svg> Практика</span>
+        </div>
+        <button class="open-btn">Сабақты ашу →</button>
+      </div>
+
+      <div class="course-card" onclick="openLesson(4)">
+        <span class="day-badge">4-күн</span>
+        <h3>Іс-шара жоспарлау және деректерді баяндамаға айналдыру</h3>
+        <p>Жасанды интеллект арқылы іс-шара сценарийі мен жылдық есеп жазу. Жансыз сандарды тірілтетін сөздер.</p>
+        <div class="course-meta">
+          <span class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 25 минут</span>
+          <span class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Шығармашылық</span>
+        </div>
+        <button class="open-btn">Сабақты ашу →</button>
+      </div>
+
+      <div class="course-card" onclick="openLesson(5)">
+        <span class="day-badge">5-күн</span>
+        <h3>Этика, қауіп және болашақ</h3>
+        <p>Жасанды интеллект «өтірік айтқанда» не болады? Авторлық құқық, кәсіби жауапкершілік және жеке жоспар.</p>
+        <div class="course-meta">
+          <span class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 20 минут</span>
+          <span class="meta-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Қорытынды</span>
+        </div>
+        <button class="open-btn">Сабақты ашу →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Пікір блогы — басты бетте -->
+  <div class="sec" style="margin-bottom:0">
+    <p class="sec-label">Оқырман пікірі</p>
+    <h2 class="sec-title">Пікір жіберу</h2>
+    <p class="sec-sub">Сабақ туралы ойыңызды, ұсынысыңызды немесе сұрағыңызды жазыңыз — оқимыз, жауап береміз.</p>
+    <div class="feedback-block" style="margin-top:28px">
+      <form class="fform" onsubmit="sendFeedback(event)">
+        <label>Атыңыз</label>
+        <input type="text" id="fb-name" placeholder="Аты-жөніңіз"/>
+        <label>Электрондық пошта (жауап алу үшін)</label>
+        <input type="email" id="fb-email" placeholder="example@mail.kz"/>
+        <label>Пікіріңіз немесе сұрағыңыз</label>
+        <textarea id="fb-msg" rows="5" placeholder="Ойыңызды еркін жазыңыз…" required></textarea>
+        <button type="submit" class="btn-fb">Жіберу</button>
+      </form>
+      <div class="fb-success" id="fb-success">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;margin-right:8px"><path d="M20 6L9 17l-5-5"/></svg>
+        Пікіріңіз жетті! Назар аударғаныңызға рақмет.
+      </div>
+    </div>
+  </div>
+
+  <div style="height:80px"></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     ПЛАТФОРМА ТУРАЛЫ
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-about">
+<div class="about-wrap">
+
+  <button class="lesson-back" onclick="goHome()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Басты бетке
+  </button>
+
+  <!-- Автор -->
+  <div class="author-card">
+    <div class="author-avatar">Н</div>
+    <div>
+      <div class="author-name">Нұрлыхан</div>
+      <div class="author-role">Медиа-менеджер · ЖИ-жасаушы · Кітапхана цифрлық сауаттылық жаттықтырушысы</div>
+      <p class="author-bio">
+        Халықаралық IT университетінің «Бизнес, медиа және басқару» кафедрасының түлегімін. Жасанды интеллект, SMM, байланыспен жұмыс (PR) және маркетинг салаларында медиа-менеджер ретінде қызмет етемін.
+      </p>
+      <p class="author-bio" style="margin-top:10px">
+        Кітапхана саласы мен цифрлық технологиялардың тоғысқан жерінде тұрып, кітапханашыларға жасанды интеллект мүмкіндіктерін үйрету — менің негізгі ісім. Бұл платформа сол жолдың бір қадамы.
+      </p>
+      <div class="author-tags">
+        <span class="author-tag">Жасанды интеллект</span>
+        <span class="author-tag">SMM</span>
+        <span class="author-tag">PR</span>
+        <span class="author-tag">Маркетинг</span>
+        <span class="author-tag">Медиа-менеджмент</span>
+        <span class="author-tag">Цифрлық сауаттылық</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Миссия -->
+  <div class="mission-card">
+    <h2>Платформа неліктен дүниеге келді?</h2>
+    <p>
+      Жасанды интеллект — бүгінгі заманның ең қуатты құралы. Алайда оның мүмкіндігі туралы ең аз білетін, бірақ ең зәру мамандардың бірі — кітапханашылар. Ақпаратты жинақтап, сақтап, адамдарға жеткізетін мамандар осы технологиясыз жүр.
+    </p>
+    <p>
+      Бұл мектеп осы олқылықты толтыру үшін жасалды. Күрделі техникалық тілден арылып, кітапхана тіршілігінен алынған нақты мысалдармен, таза қазақ тілінде. Мұнда дайын үлгі жоқ — мұнда ойлауды үйрететін жол бар.
+    </p>
+    <p>
+      Жасанды интеллект адамзаттың санасына жинақталған миллиардтаған сөздерден тұрады. Кітапхана — сол сөздердің мекені. Ендеше кітапхана мен жасанды интеллект — бір-бірінсіз толық емес.
+    </p>
+  </div>
+
+  <!-- Құндылықтар -->
+  <div class="values-grid">
+    <div class="value-card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Тереңдік
+      </h3>
+      <p>Беткі деңгейде «осылай істе» деп айту жеңіл. Біз «неліктен солай екенін» түсіндіреміз. Себебін білген адам ертең өз жолын өзі табады.</p>
+    </div>
+    <div class="value-card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Жеңілдік
+      </h3>
+      <p>Технологиядан алыс адамға да, жасы үлкен маманға да — бірдей түсінікті. Жаргон жоқ, күрделі термин жоқ, тек нақты мысал мен тіршіліктен алынған салыстырулар.</p>
+    </div>
+    <div class="value-card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Адамдық
+      </h3>
+      <p>Жасанды интеллект — жеке байланысты алмастырмайды. Бұл платформа кітапханашының адамдық рөлін жоймайды — оны мықтырақ, еркінрек етеді.</p>
+    </div>
+    <div class="value-card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Адалдық
+      </h3>
+      <p>Жасанды интеллектің шегін де, қателігін де ашық айтамыз. «Бәрін жасайды» деп алдамаймыз. Нені, қалай тексеру керектігін үйретеміз.</p>
+    </div>
+  </div>
+
+  <!-- Пікір формасы — about бетінде де -->
+  <div class="feedback-block">
+    <h2>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Пікір немесе сұрақ жіберу
+    </h2>
+    <p>Платформа туралы ойыңызды, ұсынысыңызды бөлісіңіз — әр жауапты оқимыз.</p>
+    <form class="fform" onsubmit="sendFeedback2(event)">
+      <label>Атыңыз</label>
+      <input type="text" id="fb2-name" placeholder="Аты-жөніңіз"/>
+      <label>Электрондық пошта</label>
+      <input type="email" id="fb2-email" placeholder="example@mail.kz"/>
+      <label>Пікіріңіз</label>
+      <textarea id="fb2-msg" rows="5" placeholder="Ойыңызды еркін жазыңыз…" required></textarea>
+      <button type="submit" class="btn-fb">Жіберу</button>
+    </form>
+    <div class="fb-success" id="fb2-success">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;margin-right:8px"><path d="M20 6L9 17l-5-5"/></svg>
+      Пікіріңіз жетті! Назар аударғаныңызға рақмет.
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     1-САБАҚ
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-lesson-1">
+<div class="lesson-page">
+  <button class="lesson-back" onclick="goHome()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Барлық сабақтар
+  </button>
+  <div class="prog-wrap"><div class="prog-bar" style="width:20%"></div></div>
+
+  <div class="lesson-header">
+    <div class="lesson-day">1-күн · Кіріспе</div>
+    <h1>Жасанды интеллект дегенімізді тани жүрейік</h1>
+    <p>«Ол маған жұмыс алып кетпей ме?» деген алаңнан «Ол маған уақыт үнемдейді» деген сенімге дейінгі жол — осы сабақтан басталады.</p>
+    <div class="lesson-chips">
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 20 минут</span>
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Кіріспе деңгей</span>
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Тапсырма бар</span>
+    </div>
+  </div>
+
+  <div class="lesson-body">
+
+    <div class="lblock">
+      <h2>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+        Бәрімізде бір сұрақ болды…
+      </h2>
+      <p>«ChatGPT дегеніміз не? Робот па? Маған не қатысы бар?» — бұл сұрақ — қателік емес, дұрыс бастама. Кітапхана каталогін алғаш рет ашқанда да осылай болдық қой.</p>
+      <p>Жасанды интеллект — компьютер бағдарламасы. Бірақ <strong>өте ақылды бағдарлама</strong>: интернеттегі миллиардтаған мәтінді оқып, адам тілін «меңгеріп» алған. Ендігі кезде сен оған сұрақ беріп, ол жауап қайтарады.</p>
+      <div class="callout yellow">
+        <strong>Салыстыру:</strong> Жасанды интеллект — жаңа жұмысқа орналасқан стажер сияқты. Тым жылдам оқиды, ешнәрседен қорықпайды, бірақ қадағалай жүру керек. Кейде «ойлап шығарады».
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Негізгі үш платформа
+      </h2>
+      <p>Кітапханашы ретінде бізге осы үшеуі жеткілікті:</p>
+      <ul>
+        <li><strong>ChatGPT (OpenAI)</strong> — ең танымал, қазақша да жауап береді, тегін нұсқасы бар.</li>
+        <li><strong>Google Gemini</strong> — Google-дің жасанды интеллекті, Gmail-мен жұмыс істейді, қазақша сөйлейді.</li>
+        <li><strong>Claude (Anthropic)</strong> — ұзын мәтінді жақсы талдайды, аннотациялар мен баяндамаларға ыңғайлы.</li>
+      </ul>
+      <div class="callout purple">
+        Барлығы тегін тіркеліп қолдануға болады: <strong>chat.openai.com · gemini.google.com · claude.ai</strong>
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        Мифтерді бірге сейілтейік
+      </h2>
+      <ul>
+        <li><strong>«Жасанды интеллект маған жұмыс алып кетеді»</strong> — жоқ. Кітапхана ісінде адами жылылық, сенім, қоғамдастық — алмастырылмайды. Жасанды интеллект — қол, сен — бас.</li>
+        <li><strong>«Компьютерде жақсы болу керек»</strong> — жоқ. Бір терезе ашып, қазақша жазсаң болды.</li>
+        <li><strong>«Берген жауабы — жүз пайыз дұрыс»</strong> — жоқ! Бұны бесінші сабақта тереңірек талдаймыз.</li>
+        <li><strong>«Жасы үлкендерге қиын»</strong> — смартфоннан да жеңіл деп айтатындар бар.</li>
+      </ul>
+    </div>
+
+    <div class="lblock">
+      <h2>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Промт дегеніміз не?
+      </h2>
+      <p><strong>Промт</strong> — жасанды интеллектке берілетін нұсқаулық. Оны «сұрақ» деп те айтуға болады, бірақ сұрақтан гөрі нақтырақ болуы керек.</p>
+      <div class="callout red">
+        <strong>Нашар промт:</strong> «Маған кітап туралы жаз»<br/>
+        Жасанды интеллект не туралы жазарын білмейді — жалпылама нәрсе шығарады.
+      </div>
+      <div class="callout green">
+        <strong>Жақсы промт:</strong> «Нурсұлтан Назарбаевтың "Болашаққа бағдар" кітабына қазақша 100 сөзбен аннотация жаз. Оқырман аудиториясы — орта мектеп мұғалімдері.»<br/>
+        Нақты болған сайын — нәтиже жақсы болады.
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        Тест
+      </h2>
+      <div class="quiz-block">
+        <h3>Жасанды интеллектке берілетін нұсқаулықты қалай атайды?</h3>
+        <button class="quiz-option" onclick="quiz(this,'wrong','1')">А) Алгоритм</button>
+        <button class="quiz-option" onclick="quiz(this,'correct','1')">Ә) Промт</button>
+        <button class="quiz-option" onclick="quiz(this,'wrong','1')">Б) Деректер қоры</button>
+        <button class="quiz-option" onclick="quiz(this,'wrong','1')">В) Бағдарлама коды</button>
+        <div class="quiz-explain" id="qe1">Дұрыс! <strong>Промт</strong> — жасанды интеллектке берген нұсқаулығыңның атауы. Осы мектептің негізгі ұғымы — промт жазуды үйрену.</div>
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5zM20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5zM3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14zM14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5zM15 19v-1.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5H15zM10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5zM9 5v1.5C9 7.33 8.33 8 7.5 8S6 7.33 6 6.5 6.67 5 7.5 5H9z"/></svg>
+        Практикалық тапсырма
+      </h2>
+      <div class="task-block">
+        <h3>1-тапсырма: Кітапхананды жасанды интеллектке таныстыр</h3>
+        <p>ChatGPT немесе Gemini-ді аш. Мына үлгіні өзіңше өзгертіп жіберіп көр:</p>
+        <div class="task-sample">«Мен Алматы қаласының орталық кітапханасының кітапханашысымын. Кітапхана туралы Instagram парақшасына үш сөйлемдік таныстырма жаз. Жастарға жақын, жылы тілде, қазақша жаз.»</div>
+        <p>Жасанды интеллект берген жауапты немесе өз ойыңды жаз:</p>
+        <textarea class="task-textarea" id="task1-ans" placeholder="Жауапты осы жерге жаз…"></textarea>
+        <button class="task-send" onclick="submitTask('task1-ans','task1-res')">Жіберу</button>
+        <div class="task-result" id="task1-res">Тамаша! Алғашқы промтыңды жаздың. Есте сақта: жасанды интеллектке неғұрлым нақты мәліметтер берсең, соғұрлым нақты жауап аласың. Екінші сабақта промтты тереңірек меңгереміз.</div>
+      </div>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="lnav-btn" onclick="goHome()">← Сабақтарға оралу</button>
+      <button class="lnav-btn next" onclick="openLesson(2)">2-сабаққа өту →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     2-САБАҚ
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-lesson-2">
+<div class="lesson-page">
+  <button class="lesson-back" onclick="goHome()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Барлық сабақтар
+  </button>
+  <div class="prog-wrap"><div class="prog-bar" style="width:40%"></div></div>
+
+  <div class="lesson-header">
+    <div class="lesson-day">2-күн · Негіз</div>
+    <h1>Промт анатомиясы: төрт элемент</h1>
+    <p>«Не берсем, соны аламын» — бұл жасанды интеллектің де, кітапхана оқырманының да заңы.</p>
+    <div class="lesson-chips">
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 25 минут</span>
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg> Негізгі сабақ</span>
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M13 2v7h7"/></svg> Үлгілер бар</span>
+    </div>
+  </div>
+
+  <div class="lesson-body">
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Промттың төрт «кірпіші»</h2>
+      <p>Жақсы промт — қоймаға берілген тапсырыс парағы сияқты. «Кітап беріңізші» десең — қай кітапты, қайдан іздейді? Ал мына төрт элементті қоссаң, нәтиже гарантияланады:</p>
+      <ol>
+        <li><strong>Рөл</strong> — жасанды интеллектке «сен кімсің» дейсің</li>
+        <li><strong>Контекст</strong> — жағдай мен мақсатты түсіндіресің</li>
+        <li><strong>Нақты сұраныс</strong> — не керегін айтасың</li>
+        <li><strong>Формат</strong> — қалай берілсін дейсің</li>
+      </ol>
+      <div class="callout yellow">
+        <strong>Есте сақтау тәсілі:</strong> Р–К–С–Ф = «Рақмет, Қымбатым, Сабырлы Фариза!» — бұл сабақтан кейін ұмытпайсың.
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg> Рөл беру — Role-based prompting</h2>
+      <p>Жасанды интеллектке рөл бергенде, ол сол рөлдің тілімен жауап береді:</p>
+      <div class="callout red">
+        <strong>Рөлсіз:</strong> «Балаларға кітап ұсын» → жалпылама тізім шығады
+      </div>
+      <div class="callout green">
+        <strong>Рөлмен:</strong> «Сен — он жыл тәжірибесі бар балалар кітапханашысысың. 8–10 жастағы балаларға арналған қазақша кітап ұсын…» → нақты, пайдалы нәтиже
+      </div>
+      <div class="callout purple">
+        <strong>Кітапхана үшін кәсіби рөлдер:</strong> библиограф · балалар кітапханашысы · іс-шара ұйымдастырушы · статистик-баяндамашы · SMM маман · анықтамашы-библиограф
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg> Толық промт үлгісі</h2>
+      <div class="prompt-box" id="p2-1">[РӨЛІ] Сен — тәжірибелі балалар кітапханашысысың.
+[КОНТЕКСТ] Мен Алматы қаласындағы мектеп кітапханасында жұмыс істеймін. Бесінші сынып оқушыларына жаз оқу тізімін дайындауым керек.
+[СҰРАНЫС] 8–10 жас аралығындағы балаларға арналған, қазақ немесе орыс тілінде жазылған, ғылыми-фантастика немесе оқиғалы жанрдағы бес кітап ұсын.
+[ФОРМАТ] Нөмірленген тізім. Әр кітапқа: атауы, авторы, екі сөйлемдік түсіндірме.<button class="copy-btn" onclick="copyBlock('p2-1',this)">Көшіру</button></div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Тест</h2>
+      <div class="quiz-block">
+        <h3>Промттың қай элементі жасанды интеллектке «сен кімсің» дейді?</h3>
+        <button class="quiz-option" onclick="quiz(this,'wrong','2')">А) Формат</button>
+        <button class="quiz-option" onclick="quiz(this,'wrong','2')">Ә) Контекст</button>
+        <button class="quiz-option" onclick="quiz(this,'correct','2')">Б) Рөл</button>
+        <button class="quiz-option" onclick="quiz(this,'wrong','2')">В) Нақты сұраныс</button>
+        <div class="quiz-explain" id="qe2">Дәл! <strong>Рөл</strong> — жасанды интеллектке «сен кімсің» дейтін элемент. «Сен — библиограф», «Сен — іс-шара ұйымдастырушысың» — осылай басталатын промттар жақсы нәтиже береді.</div>
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/></svg> Тапсырма</h2>
+      <div class="task-block">
+        <h3>2-тапсырма: Төрт элементті өзің жаз</h3>
+        <p>Мына жағдай үшін төрт элементтен тұратын промт жаз:<br/>
+        <em>Кітапхананың 100 жылдығына арналған іс-шараға хабарландыру жасау керек.</em></p>
+        <textarea class="task-textarea" id="task2-ans" placeholder="[РӨЛІ]…&#10;[КОНТЕКСТ]…&#10;[СҰРАНЫС]…&#10;[ФОРМАТ]…"></textarea>
+        <button class="task-send" onclick="submitTask('task2-ans','task2-res')">Жіберу</button>
+        <div class="task-result" id="task2-res">Керемет! Промтыңда төрт элемент болса — шебер болдың. Осы промтты ChatGPT-те сынап көр. Үшінші сабақта осы дағдыны нақты тапсырмаларға қолданамыз.</div>
+      </div>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="lnav-btn" onclick="openLesson(1)">← 1-сабақ</button>
+      <button class="lnav-btn next" onclick="openLesson(3)">3-сабаққа өту →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     3-САБАҚ
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-lesson-3">
+<div class="lesson-page">
+  <button class="lesson-back" onclick="goHome()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Барлық сабақтар
+  </button>
+  <div class="prog-wrap"><div class="prog-bar" style="width:60%"></div></div>
+
+  <div class="lesson-header">
+    <div class="lesson-day">3-күн · Практика</div>
+    <h1>Кітапхана тапсырмаларын жасанды интеллектпен орындау</h1>
+    <p>Аннотация жазу, кітап ұсыну, жазба дайындау — бәрі бес минутта бітеді. Бес дайын үлгі — бесеуін де сынап шық.</p>
+    <div class="lesson-chips">
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 30 минут</span>
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M13 2v7h7"/></svg> 5 дайын үлгі</span>
+    </div>
+  </div>
+
+  <div class="lesson-body">
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> №1 — Кітапқа аннотация жазу</h2>
+      <p>Аннотация жазу — уақыт алатын, бірақ жасанды интеллектке отыз секундта берілетін тапсырма:</p>
+      <div class="prompt-box" id="p3-1">Сен — тәжірибелі библиограф.
+«[Кітап атауы]» (автор: [Аты-жөні], жыл: [Жыл]) кітабына қазақша аннотация жаз.
+Талаптар: 80–100 сөз, ресми ғылыми стиль, кітаптың тақырыбы мен маңыздылығын ашып жаз, мақсатты оқырман аудиторияны атап өт.<button class="copy-btn" onclick="copyBlock('p3-1',this)">Көшіру</button></div>
+      <div class="callout yellow"><strong>Назар аудар:</strong> нәтижені нақты кітаппен салыстыр! Жасанды интеллект кейде жоқ мазмұн «ойлап шығаруы» мүмкін.</div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg> №2 — Оқырманға кітап ұсынысы</h2>
+      <div class="prompt-box" id="p3-2">Сен — балалар және жастар кітапханашысысың.
+[Жас мөлшері]-жастағы оқырман [тақырып/қызығушылық] тақырыбына қызығады.
+Қазақ немесе орыс тілінде жазылған 5 кітап ұсын.
+Формат: нөмірленген тізім, әр кітапқа — атауы, авторы, неліктен ұсынылатыны (бір сөйлем).<button class="copy-btn" onclick="copyBlock('p3-2',this)">Көшіру</button></div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zM11 11V7M16 11V7"/></svg> №3 — Әлеуметтік желіге жазба</h2>
+      <div class="prompt-box" id="p3-3">Сен — кітапхана SMM маманысың.
+[Кітапхана атауы] кітапханасының Instagram парақшасына [іс-шара/жаңалық/кітап] туралы жазба дайында.
+Тіл: қазақша. Аудитория: 18–35 жас.
+Формат: 3–4 сөйлем + 3 таңба (белгі) + 3 хэштег.
+Стиль: жылы, достық, жастарға жақын.<button class="copy-btn" onclick="copyBlock('p3-3',this)">Көшіру</button></div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg> №4 — Библиографиялық сұраныс өңдеу</h2>
+      <div class="prompt-box" id="p3-4">Сен — ғылыми кітапхананың анықтамашы-библиографысың.
+Оқырман [тақырып] бойынша [мақсат: диплом/ғылыми мақала/жоба] жазып жатыр.
+Қазақ, орыс немесе ағылшын тіліндегі 5–7 дереккөз ұсын.
+Формат: нөмірленген тізім, нені қайдан іздеуге болатынын да жаз.
+МАҢЫЗДЫ: тек шынайы, нақты кітап пен мақала атаулары болсын — жалған мәлімет берілмесін.<button class="copy-btn" onclick="copyBlock('p3-4',this)">Көшіру</button></div>
+      <div class="callout red"><strong>Ескерту:</strong> Библиографиялық деректерді міндетті тексер! Жасанды интеллект авторды немесе жылды қателесуі мүмкін.</div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> №5 — Каталог карточкасына сипаттама</h2>
+      <div class="prompt-box" id="p3-5">Сен — кітапхана каталогтаушысысың.
+Мына мәліметтерге сүйеніп: [Атауы, Авторы, Жылы, Баспасы, Бет саны, ISBN]
+Кітап карточкасы үшін қысқаша сипаттама жаз (50–60 сөз).
+Тіл: қазақша. Стиль: нейтральды, ресми. Болжамды УДК/ББК кодтарын да ұсын.<button class="copy-btn" onclick="copyBlock('p3-5',this)">Көшіру</button></div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Тест</h2>
+      <div class="quiz-block">
+        <h3>Жасанды интеллектке библиографиялық сұраныс берген кезде ең маңызды нәрсе қандай?</h3>
+        <button class="quiz-option" onclick="quiz(this,'wrong','3')">А) Сұрақты қысқа жазу</button>
+        <button class="quiz-option" onclick="quiz(this,'wrong','3')">Ә) Ағылшынша жазу</button>
+        <button class="quiz-option" onclick="quiz(this,'correct','3')">Б) Нәтижені тексеріп, шынайылығын растау</button>
+        <button class="quiz-option" onclick="quiz(this,'wrong','3')">В) Кем дегенде үш рет сұрау</button>
+        <div class="quiz-explain" id="qe3">Дәл солай! Жасанды интеллект «жоқ кітаптың» атауын ойлап шығаруы мүмкін. Кітапханашының кәсіби жауапкершілігі — алынған деректерді міндетті тексеру.</div>
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/></svg> Тапсырма</h2>
+      <div class="task-block">
+        <h3>3-тапсырма: Нақты кітапқа аннотация</h3>
+        <p>Жоғарыдағы №1 үлгіні нақты кітап атауымен толтырып, ChatGPT-те сынап көр. Алынған аннотацияны осында жаз:</p>
+        <textarea class="task-textarea" id="task3-ans" placeholder="Жасанды интеллект жасаған аннотацияны осы жерге қой…"></textarea>
+        <button class="task-send" onclick="submitTask('task3-ans','task3-res')">Жіберу</button>
+        <div class="task-result" id="task3-res">Жарайсың! Аннотацияны нақты кітаппен салыстырып тексер. Жаңа дағдың — аннотация бес минутта дайын! Төртінші сабақта іс-шара жоспарлауды үйренеміз.</div>
+      </div>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="lnav-btn" onclick="openLesson(2)">← 2-сабақ</button>
+      <button class="lnav-btn next" onclick="openLesson(4)">4-сабаққа өту →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     4-САБАҚ
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-lesson-4">
+<div class="lesson-page">
+  <button class="lesson-back" onclick="goHome()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Барлық сабақтар
+  </button>
+  <div class="prog-wrap"><div class="prog-bar" style="width:80%"></div></div>
+
+  <div class="lesson-header">
+    <div class="lesson-day">4-күн · Шығармашылық</div>
+    <h1>Іс-шара жоспарлау және деректерді баяндамаға айналдыру</h1>
+    <p>Статистика — жансыз сандар. Баяндама — сол сандарды адамның жүрегіне жеткізу өнері. Жасанды интеллект осы екеуін де жасайды.</p>
+    <div class="lesson-chips">
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 25 минут</span>
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Сценарий</span>
+    </div>
+  </div>
+
+  <div class="lesson-body">
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Іс-шара сценарийін жазу</h2>
+      <p>Сценарий жазуға уақыт кетеді — бірақ жасанды интеллект сізге қаңқасын жасап береді, сен жан бересің:</p>
+      <div class="prompt-box" id="p4-1">Сен — тәжірибелі іс-шара ұйымдастырушысысың.
+«[Іс-шара атауы]» атты кітапхана іс-шарасына толық сценарий жаз.
+Мәліметтер:
+- Ұзақтығы: [минут]
+- Қатысушы саны: [саны] адам
+- Жас мөлшері: [жас]
+- Мақсаты: [мысалы: оқуға деген қызығушылықты ояту]
+
+Сценарийде болсын:
+1. Кіріспе — жүргізуші мәтінімен
+2. Негізгі бөлім — үш белсенді тапсырмамен
+3. Қорытынды — ой бөлісуімен
+Хронометражды жазып шық.<button class="copy-btn" onclick="copyBlock('p4-1',this)">Көшіру</button></div>
+      <div class="callout yellow">Шыққан сценарийді «өзімдікі» деп айтуға болады — жасанды интеллект берген материалды сен өңдедің, сен авторсың.</div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Статистиканы баяндамаға айналдыру</h2>
+      <p>Жылдық есепте «2024 жылы 12 500 оқырман қызмет алды» — жансыз сан. Жасанды интеллект мұны өзгертеді:</p>
+      <div class="prompt-box" id="p4-3">Сен — деректерді баяндамаға айналдыратын жазушысың.
+Мына статистиканы: «[деректеріңді жаз: мысалы, 2024 жылы 12 500 оқырман, 800 іс-шара, 3 200 онлайн пайдаланушы]» —
+адамдар жүрегіне жететін, мақтаныш пен шабыт сезімін оятатын қазақша кіріспе мәтінге айналдыр.
+Ұзындығы: 150–200 сөз.
+Мақсаты: жылдық есеп немесе баяндама үшін.<button class="copy-btn" onclick="copyBlock('p4-3',this)">Көшіру</button></div>
+      <div class="callout green">
+        <strong>Нәтиже мысалы:</strong> «12 500 — бұл тек сан емес. Бұл 12 500 адамның жүрегіне жанасқан, 12 500 оқырманның санасына нәр берген, 12 500 рет "мен осында боламын" деп шешкен адамдардың тарихы…»
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Ресми хат жазу</h2>
+      <div class="prompt-box" id="p4-4">Сен — кітапхана директорысың.
+[Мекеме/Серіктес] ұйымына [мақсат: серіктестік ұсыну / демеушілік сұрау / мерейтойға шақыру] туралы ресми хат жаз.
+Тіл: қазақша.
+Стиль: ресми, бірақ жылы.
+Ұзындығы: 200–250 сөз.<button class="copy-btn" onclick="copyBlock('p4-4',this)">Көшіру</button></div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Тест</h2>
+      <div class="quiz-block">
+        <h3>Статистиканы баяндамаға айналдырудағы жасанды интеллектің басты артықшылығы қандай?</h3>
+        <button class="quiz-option" onclick="quiz(this,'wrong','4')">А) Деректерді жылдам есептеу</button>
+        <button class="quiz-option" onclick="quiz(this,'correct','4')">Ә) Жансыз сандарды эмоцияға, жанды тілге айналдыру</button>
+        <button class="quiz-option" onclick="quiz(this,'wrong','4')">Б) Автоматты аудару</button>
+        <button class="quiz-option" onclick="quiz(this,'wrong','4')">В) Кесте жасау</button>
+        <div class="quiz-explain" id="qe4">Дұрыс! Жасанды интеллект деректерді тек санап шықпайды — оларды <strong>адамдар жүрегіне жететін тілге</strong> аударады. Жылдық есепте, баяндамада, хабарландыруда — өте күшті қолданыс.</div>
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/></svg> Тапсырма</h2>
+      <div class="task-block">
+        <h3>4-тапсырма: Өз іс-шараңның сценарийі</h3>
+        <p>Жақын арада өткізгелі жатқан немесе өткен іс-шараңды ойла. Жоғарыдағы сценарий үлгісін сол іс-шараға бейімде. Шыққан сценарийден ең ұнаған бір бөлімді осында жаз:</p>
+        <textarea class="task-textarea" id="task4-ans" placeholder="Сценарийдің ең ұнаған бөлігін осы жерге жаз…"></textarea>
+        <button class="task-send" onclick="submitTask('task4-ans','task4-res')">Жіберу</button>
+        <div class="task-result" id="task4-res">Алғашқы жасанды интеллект көмекті сценарийің дайын! Есіңде болсын: жасанды интеллект берген сценарий — жобалама. Оны өзіңше жетілдіру — сенің шығармашылығың. Бесінші сабақта — этика, қауіпсіздік және жеке жоспар!</div>
+      </div>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="lnav-btn" onclick="openLesson(3)">← 3-сабақ</button>
+      <button class="lnav-btn next" onclick="openLesson(5)">5-сабаққа өту →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     5-САБАҚ
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-lesson-5">
+<div class="lesson-page">
+  <button class="lesson-back" onclick="goHome()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Барлық сабақтар
+  </button>
+  <div class="prog-wrap"><div class="prog-bar" style="width:100%"></div></div>
+
+  <div class="lesson-header">
+    <div class="lesson-day">5-күн · Қорытынды</div>
+    <h1>Этика, қауіп және болашақ</h1>
+    <p>Ең қуатты құрал — дұрыс қолданылса ғана пайдалы. Жасанды интеллектің шегін, тәуекелін және болашағын бірге тани жүрейік.</p>
+    <div class="lesson-chips">
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 20 минут</span>
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Қауіпсіздік</span>
+      <span class="l-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Соңғы сабақ</span>
+    </div>
+  </div>
+
+  <div class="lesson-body">
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Жалған ақпарат — «галлюцинация»</h2>
+      <p><strong>Галлюцинация</strong> — жасанды интеллектің сенімді дауыспен, бірақ жалған нәрсені айтуы. «Бұл кітап 1995 жылы шықты» деп жазуы мүмкін — ол кітап болмаса да.</p>
+      <div class="callout red">
+        <strong>Ең қауіпті тұстар:</strong><br/>
+        · кітаптың ISBN, шығу жылы, бет саны<br/>
+        · автор өмірбаяны — нақты деректер<br/>
+        · статистика — «нақты сан» берсе, тексер<br/>
+        · заңдар, нормативтер, стандарттар
+      </div>
+      <div class="callout green">
+        <strong>Қорғану жолы:</strong> жасанды интеллект берген нәрсені «болжам» деп санашы. Кітапханашы ретінде библиографиялық деректерді міндетті тексер.
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Авторлық құқық және кәсіби этика</h2>
+      <ul>
+        <li>Жасанды интеллект арқылы жасалған мазмұнды ресми жарияламаған жерде <strong>«жасанды интеллект көмегімен дайындалды»</strong> деп белгілеу — кәсіби этика нормасы.</li>
+        <li>Оқырман туралы жеке деректерді (аты, оқыған кітаптары, байланысы) жасанды интеллектке жіберуге <strong>болмайды.</strong></li>
+        <li>Жасанды интеллект шығармаларды толыққанды аудармайды — авторлық құқыққа тиіп кетуі мүмкін.</li>
+      </ul>
+      <div class="callout purple">
+        <strong>IFLA 2024 нұсқаулығы бойынша:</strong> кітапхана жұмысында жасанды интеллектті қолданған кезде ашықтық принципін сақтаңыз — оқырмандарға жасанды интеллектің рөлін хабарлаңыз.
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg> Жасы үлкен кітапханашыларға арнайы</h2>
+      <p>«Маған қиын болады» деп ойлайсыз ба? Бұл — табиғи сезім. Бірақ мына жайтты ұмытпаңыз:</p>
+      <ul>
+        <li>Жасанды интеллекті үйрену — смартфон үйренген сияқты: бастапқыда қиын, бірде «бұл болмаса не болар еді» дейсің.</li>
+        <li>Қате жазсаңыз да, жасанды интеллект ашуланбайды, сізді сынамайды — ол шыдамды серік.</li>
+        <li>«Жасы жастармен бәсекелесу» деп ойламаңыз — сізде <em>тәжірибе</em> бар, ол алмастырылмайды.</li>
+        <li>Кез келген уақытта «мұны қарапайым тілде қайталап бер» деп сұрауға болады.</li>
+      </ul>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg> Халықаралық тәжірибе</h2>
+      <ul>
+        <li><strong>IFLA (Халықаралық кітапхана федерациясы)</strong> — 2023–2024 жылдары жасанды интеллект пен кітапхана саласына арнайы нұсқаулықтар шығарды.</li>
+        <li><strong>АҚШ кітапханалары</strong> — жасанды интеллектті анықтамалық қызметте сынақтан өткізуде.</li>
+        <li><strong>Еуропа кітапханалары</strong> — жасанды интеллект оқыту бағдарламалары іске қосылды.</li>
+      </ul>
+      <div class="callout purple">Негізгі тезис: жасанды интеллект кітапхана қызметін алмастырмайды — <strong>кеңейтеді.</strong> Ақпараттық сауаттылық мамандары бұрынғыдан да маңыздырақ болды.</div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Дұрыс қолданудың он принципі</h2>
+      <ol>
+        <li>Жасанды интеллект — көмекші, шешімді <strong>сен</strong> қабылдайсың.</li>
+        <li>Барлық нәтижені <strong>тексер</strong>, соқыр сенбе.</li>
+        <li>Жеке деректерді (оқырман ақпараты) жасанды интеллектке <strong>жіберме.</strong></li>
+        <li>Жасанды интеллект арқылы жасалған мазмұнды <strong>белгіле.</strong></li>
+        <li>Промтты неғұрлым <strong>нақты</strong> жазсаң — нәтиже жақсы болады.</li>
+        <li>Бір нәтиже жетпесе — <strong>қайталап сұра,</strong> өзгертіп жаз.</li>
+        <li>Жасанды интеллектің шегін <strong>біл:</strong> математика, нақты деректер — тексер.</li>
+        <li>Жасанды интеллектті кәсіби дамуға <strong>пайдалан:</strong> оқу, зерттеу, жоспарлау.</li>
+        <li>Әріптестеріңе <strong>үйрет</strong> — білімді бөлісу кітапхана мәдениетінің өзегі.</li>
+        <li>Жаңалықтарды <strong>қадағала</strong> — жасанды интеллект тез дамиды.</li>
+      </ol>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Соңғы тест</h2>
+      <div class="quiz-block">
+        <h3>Кітапхана жұмысында жасанды интеллект берген нәтижені тексермей қолдануға болады ма?</h3>
+        <button class="quiz-option" onclick="quiz(this,'wrong','5')">А) Иә, сенімді болып көрінсе</button>
+        <button class="quiz-option" onclick="quiz(this,'wrong','5')">Ә) Шапшаңдық қажет болса — иә</button>
+        <button class="quiz-option" onclick="quiz(this,'correct','5')">Б) Жоқ, ешқашан — библиографиялық деректерді міндетті тексер</button>
+        <button class="quiz-option" onclick="quiz(this,'wrong','5')">В) Алдыңғы жауап дұрыс болса</button>
+        <div class="quiz-explain" id="qe5">Дұрыс! Ешқашан — жасанды интеллектің галлюцинациясы кез келген уақытта болуы мүмкін. Кітапханашының кәсіби жауапкершілігі — ол берген ақпаратты тексеру. Бұл сенің артықшылығың, жасанды интеллекте кәсіби этика жоқ — сенде бар.</div>
+      </div>
+    </div>
+
+    <div class="lblock">
+      <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/></svg> Соңғы тапсырма</h2>
+      <div class="task-block">
+        <h3>5-тапсырма: Жеке отыз күндік жоспар</h3>
+        <p>ChatGPT-те мына үлгіні жіберіп, өзіңе жеке жоспар жасат:</p>
+        <div class="task-sample">«Мен кітапхана қызметкерімін, жасанды интеллектімді жаңадан үйреніп жатырмын. Менің басты міндеттерім: [үш міндет жаз]. Маған отыз күндік жоспар жаса: күнделікті он–он бес минуттық тапсырмамен, нақты пайдалы нәтижемен.»</div>
+        <p>Жоспардан ең маңызды үш қадамды жаз:</p>
+        <textarea class="task-textarea" id="task5-ans" placeholder="Менің отыз күндік жоспарымнан үш қадам:&#10;1. …&#10;2. …&#10;3. …"></textarea>
+        <button class="task-send" onclick="finishCourse()">Курсты аяқтау</button>
+        <div class="task-result" id="task5-res"></div>
+      </div>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="lnav-btn" onclick="openLesson(4)">← 4-сабақ</button>
+      <button class="lnav-btn next" onclick="finishCourse()">Курсты аяқтау →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     ҚОРЫТЫНДЫ / КУӘЛІК
+═══════════════════════════════════════════════ -->
+<div class="page" id="page-final">
+<div class="final-wrap">
+  <svg width="72" height="72" viewBox="0 0 72 72" fill="none" style="margin:0 auto 20px;display:block"><circle cx="36" cy="36" r="36" fill="var(--yellow)" opacity=".2"/><path d="M20 36l11 11 21-21" stroke="var(--purple)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <h1 style="font-family:'Nunito',sans-serif;font-weight:900;font-size:2.2rem;margin-bottom:12px">Мереке болсын!</h1>
+  <p style="color:var(--muted);font-size:1rem;max-width:520px;margin:0 auto 32px;line-height:1.75">Сен «Кітапханашыларға арналған промт инжиниринг негіздері» мектебін сәтті аяқтадың. Бұл — жасанды интеллект пен кітапхана ісінің тоғысқан жерінде тұрған кәсіби жолдың басталуы.</p>
+
+  <div class="cert-card">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin:0 auto 12px;display:block"><circle cx="16" cy="16" r="16" fill="rgba(255,255,255,.15)"/><path d="M10 16l4.5 4.5 8-9" stroke="var(--yellow)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h2>Куәлік</h2>
+    <p style="opacity:.7;font-size:.85rem;margin-top:4px">«Кітапханашыларға арналған промт инжиниринг» мектебін аяқтағаны үшін</p>
+    <div class="cert-name" id="certName">— Мектеп қатысушысы —</div>
+    <p style="opacity:.55;font-size:.8rem;margin-top:6px">Құлтемір · Жасанды интеллект мектебі · 2025</p>
+  </div>
+
+  <div class="enroll-cta">
+    <h3>Ресми куәлік және жаңа модульдер</h3>
+    <p>Ресми куәлік алу және жаңа сабақтар шыққанда хабар алу үшін — байланыс деректеріңді қалдыр.</p>
+    <button class="btn-primary" onclick="openModal()" style="width:100%;display:block">Байланыс деректерін қалдыру</button>
+    <div style="margin-top:14px">
+      <button onclick="goHome()" style="background:none;border:none;color:var(--purple);font-weight:700;cursor:pointer;font-size:.9rem">← Сабақтарға оралу</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p><strong>Үйренейік қане, достар… · Құлтемір жасанды интеллект мектебі</strong></p>
+  <p style="margin-top:6px">Жасаған: <strong>Нұрлыхан</strong> · Медиа-менеджер · Халықаралық IT университеті · <a href="mailto:ionurlykhans@gmail.com">ionurlykhans@gmail.com</a></p>
+</footer>
+
+
+<script>
+/* ─── БЕТТЕР ─── */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('page-'+id);
+  if(pg){pg.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+}
+function goHome(){showPage('home')}
+function openLesson(n){showPage('lesson-'+n)}
+
+/* ─── МОДАЛ ─── */
+function openModal(){document.getElementById('regOverlay').classList.add('show')}
+function closeModal(){document.getElementById('regOverlay').classList.remove('show')}
+function overlayClose(e){if(e.target===document.getElementById('regOverlay'))closeModal()}
+
+function handleReg(e){
+  e.preventDefault();
+  const name=document.getElementById('reg-name').value;
+  const phone=document.getElementById('reg-phone').value;
+  const org=document.getElementById('reg-org').value;
+  const email=document.getElementById('reg-email').value;
+  document.getElementById('certName').textContent=name||'Мектеп қатысушысы';
+  e.target.style.display='none';
+  document.getElementById('regSuccess').style.display='block';
+  fetch('https://formsubmit.co/ajax/ionurlykhans@gmail.com',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({_subject:'Құлтемір — жаңа тіркелуші',name,phone,org,email})
+  }).catch(()=>{});
+}
+
+/* ─── ТЕСТ ─── */
+function quiz(btn,type,id){
+  const p=btn.parentElement;
+  if(p.dataset.answered)return;
+  p.dataset.answered='1';
+  p.querySelectorAll('.quiz-option').forEach(b=>{b.disabled=true});
+  btn.classList.add(type);
+  const ex=document.getElementById('qe'+id);
+  if(ex)ex.classList.add('show');
+}
+
+/* ─── ПРОМТ КӨШІРУ ─── */
+function copyBlock(id,btn){
+  const el=document.getElementById(id);
+  // Get text without button text
+  const clone=el.cloneNode(true);
+  clone.querySelectorAll('button').forEach(b=>b.remove());
+  const txt=clone.innerText.trim();
+  navigator.clipboard.writeText(txt).then(()=>{
+    btn.textContent='Көшірілді';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='Көшіру';btn.classList.remove('ok')},2000);
+  });
+}
+
+/* ─── ТАПСЫРМА ─── */
+function submitTask(inputId,resultId){
+  const v=document.getElementById(inputId).value.trim();
+  if(!v){alert('Алдымен жауапты жаз.');return;}
+  document.getElementById(resultId).style.display='block';
+}
+
+/* ─── КУРС АЯҚТАУ ─── */
+function finishCourse(){
+  const v=document.getElementById('task5-ans').value.trim();
+  const r=document.getElementById('task5-res');
+  if(v){r.style.display='block';r.textContent='Барлық бес сабақты аяқтадың! Куәлік бетіне өтілуде…';}
+  setTimeout(()=>showPage('final'),800);
+}
+
+/* ─── ПІКІР ЖІБЕРУ ─── */
+function sendFeedback(e){
+  e.preventDefault();
+  const name=document.getElementById('fb-name').value;
+  const email=document.getElementById('fb-email').value;
+  const msg=document.getElementById('fb-msg').value.trim();
+  if(!msg){alert('Пікіріңді жаз.');return;}
+  fetch('https://formsubmit.co/ajax/ionurlykhans@gmail.com',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({_subject:'Құлтемір — оқырман пікірі',name,email,message:msg})
+  }).catch(()=>{});
+  document.getElementById('fb-success').style.display='block';
+  e.target.reset();
+}
+function sendFeedback2(e){
+  e.preventDefault();
+  const name=document.getElementById('fb2-name').value;
+  const email=document.getElementById('fb2-email').value;
+  const msg=document.getElementById('fb2-msg').value.trim();
+  if(!msg){alert('Пікіріңді жаз.');return;}
+  fetch('https://formsubmit.co/ajax/ionurlykhans@gmail.com',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({_subject:'Құлтемір — платформа туралы пікір',name,email,message:msg})
+  }).catch(()=>{});
+  document.getElementById('fb2-success').style.display='block';
+  e.target.reset();
+}
+</script>
+</body>
+</html>
